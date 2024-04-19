@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 // Init
 Route::get('/ping', function () {
     return response()->json([
-        'status' => 'success',
+        'status' => 'running',
         'message' => "You see this message on your screen, get ready cause i'm going hard. Bing-Bong 😂",
     ]);
 });
