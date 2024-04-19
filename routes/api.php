@@ -19,5 +19,13 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::get('/user', function (Request $request) {
-    return $request->user();
+    return (new \App\DTO\ApiResponse(
+        error: false,
+        data: $request->user(),
+        message: 'User retrieved successfully',
+    ))->toArray();
 })->middleware('auth:sanctum');
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+
+});
