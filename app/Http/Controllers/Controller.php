@@ -2,7 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\ApiResponse;
+use Illuminate\Http\JsonResponse;
+
 abstract class Controller
 {
-    //
+    protected final function success(string $message = 'success', ?array $data = null, int $code = 200): JsonResponse
+    {
+        return response()
+            ->json(new ApiResponse(
+                error: false,
+                message: $message,
+                data: $data
+            ), $code);
+    }
+
+    protected final function error(string $message = 'An error occurred', int $code = 400): JsonResponse
+    {
+        return response()
+            ->json(new ApiResponse(
+                error: true,
+                message: $message
+            ), $code);
+    }
 }
