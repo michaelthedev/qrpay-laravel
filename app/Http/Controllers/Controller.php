@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\DTO\ApiResponse;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 abstract class Controller
 {
-    protected final function success(string $message = 'success', ?array $data = null, int $code = 200): JsonResponse
+    protected final function success(string $message = 'success', null|array|Collection|Model $data = null, int $code = 200): JsonResponse
     {
         return response()
             ->json(new ApiResponse(

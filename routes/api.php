@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\User\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Init
@@ -18,14 +17,8 @@ Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
 });
 
-Route::get('/user', function (Request $request) {
-    return (new \App\DTO\ApiResponse(
-        error: false,
-        data: $request->user(),
-        message: 'User retrieved successfully',
-    ))->toArray();
-})->middleware('auth:sanctum');
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
+    Route::get('/user', [\App\Http\Controllers\User\UserController::class, 'get']);
 });
