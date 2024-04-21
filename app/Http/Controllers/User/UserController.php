@@ -13,8 +13,8 @@ final class UserController extends Controller
     public function get(Request $request): JsonResponse
     {
         $user = $request->user();
+        $user->load('wallets');
         $data = $user->toArray();
-        $data['wallets'] = $user->wallets;
 
         return $this->success(
             message: 'user details',
