@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\User\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\UserController;
 
 // Init
 Route::get('/ping', function () {
@@ -19,6 +20,5 @@ Route::prefix('auth')->group(function () {
 
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
-
-    Route::get('/user', [\App\Http\Controllers\User\UserController::class, 'get']);
+    Route::get('/user', [UserController::class, 'get']);
 });
