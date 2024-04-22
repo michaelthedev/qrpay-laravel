@@ -19,6 +19,10 @@ final class Transaction extends Model
         'details',
     ];
 
+    protected $casts = [
+        'details' => 'array'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
