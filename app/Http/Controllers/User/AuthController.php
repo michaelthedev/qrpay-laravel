@@ -55,8 +55,11 @@ final class AuthController extends Controller
         return $this->success(
             message: 'Login Successful',
             data: [
-                'token' => $user->createToken('auth_token')
-                    ->plainTextToken,
+                'token' => $user->createToken(
+                    name: 'auth_token',
+                    expiresAt: now()->addHour()
+                )->plainTextToken,
+                'expiry' => 3600,
                 'token_type' => 'Bearer',
             ]
         );
