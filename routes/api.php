@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\TransactionController;
 
 // Init
 Route::get('/ping', function () {
@@ -21,4 +22,6 @@ Route::prefix('auth')->group(function () {
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/user', [UserController::class, 'get']);
+
+    Route::get('/transactions', [TransactionController::class, 'get']);
 });
