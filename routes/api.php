@@ -28,5 +28,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::prefix('/transfer')->group(function () {
         Route::get('/currencies', [TransferController::class, 'currencies']);
+        Route::get('/validateUser', [TransferController::class, 'validate']);
     });
 });
